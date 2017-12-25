@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1514145437 source:c:\users\luis gustavo\documents\codeblocks projects\testes\main.cpp
+	<iostream>
+	<windows.h>
+	"include/Calculadora.h"
+
+1514146281 c:\users\luis gustavo\documents\codeblocks projects\testes\include\calculadora.h
+
+1514145437 source:c:\users\luis gustavo\documents\codeblocks-projects\testes\main.cpp
+	<iostream>
+	<windows.h>
+	"include/Calculadora.h"
+
+1514146281 c:\users\luis gustavo\documents\codeblocks-projects\testes\include\calculadora.h
+
+1514146582 source:c:\users\luis gustavo\documents\codeblocks-projects\testes\src\calculadora.cpp
+	"Calculadora.h"
+
