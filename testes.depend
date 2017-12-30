@@ -6,9 +6,10 @@
 
 1514146281 c:\users\luis gustavo\documents\codeblocks projects\testes\include\calculadora.h
 
-1514145437 source:c:\users\luis gustavo\documents\codeblocks-projects\testes\main.cpp
+1514604376 source:c:\users\luis gustavo\documents\codeblocks-projects\testes\main.cpp
 	<iostream>
 	<windows.h>
+	<vector>
 	"include/Calculadora.h"
 
 1514146281 c:\users\luis gustavo\documents\codeblocks-projects\testes\include\calculadora.h

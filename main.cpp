@@ -1,25 +1,28 @@
 #include <iostream>
 #include <windows.h>
+#include <vector>
 #include "include/Calculadora.h"
 
 using namespace std;
 
 int main()
 {
-    int num = 0, teste = 0, opt;
-    double n1, n2;
+    int num = 0, teste, opt; //Variables that have function of control the structures of repetition
+    double n1, n2, media = 0;  //variables that receive the input of data of an cin (iostream library method) for pass a parameter in functions of the class Calculadora
+    vector<double> notas(3, 0); //Declaration of array's variables utilizing vector library
 
     Calculadora *o = new Calculadora;
 
     do{
         system("CLS");
         cout << "Qual operacao deseja realizar?\n";
-        cout << "1 - soma\n";
-        cout << "2 - subtracao\n";
-        cout << "3 - multiplicacao\n";
+        cout << "1 - Soma\n";
+        cout << "2 - Subtracao\n";
+        cout << "3 - Multiplicacao\n";
         cout << "4 - Divisao\n";
         cout << "5 - Tabuada\n";
-        cout << "6 - SAIR\n";
+        cout << "6 - Media do aluno\n";
+        cout << "7 - SAIR\n";
         cin >> opt; cout << endl;
 
         switch(opt){
@@ -93,12 +96,44 @@ int main()
                 }while(teste == 1);
                 break;
             case 6:
+                do{
+                    media = 0;
+                    for(int a=0; a <= 3; a++){
+                        notas[a] = 0;
+                    }
+                    system("CLS");
+                    cout << "Programa Media de um Aluno. Abaixo serao solicitadas as notas dos 4 bimentres para ser calculada a media final.\n";
+
+                    //Adicionando notas ao array
+                    for(int i=0; i <= 3; i++){
+                        cout << i + 1 << " :";
+                        cin >> notas[i]; cout << endl;
+                    }
+
+                    //Calculo da media com vetores
+                    for(int x = 0; x <= 3; x++){
+                        media += notas[x];
+                    }
+
+                    media /= 4;
+
+                    cout << "Notas recolhidas com sucesso! A media para este aluno e de: " << media;
+
+                    cout << endl;cout << endl;
+                    cout << "O que deseja fazer agora? 1 - Repetir Operacao / 2 - Fazer Outra Operacao\n";
+                    cin >> teste;
+                }while(teste == 1);
+                break;
+            case 7:
                 break;
             default:
                 cout << "Opcao Invalida!\n";
         }
 
-    }while(opt != 6);
+    }while(opt != 7);
+
+    //This section have a function of remove the objects allocated in the memory
+    delete o;
 
     return 0;
 }
