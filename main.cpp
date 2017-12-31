@@ -1,17 +1,19 @@
-#include <iostream>
+#include <iostream> //Input and Output library
 #include <windows.h>
 #include <vector>
+#include <string>
 #include "include/Calculadora.h"
 
 using namespace std;
 
 int main()
 {
-    int num = 0, teste, opt; //Variables that have function of control the structures of repetition
-    double n1, n2, media = 0;  //variables that receive the input of data of an cin (iostream library method) for pass a parameter in functions of the class Calculadora
+    int num = 0, teste, opt, qtdNotas; //Variables that have function of control the structures of repetition
+    double n1, n2;  //variables that receive the input of data of an cin (iostream library method) for pass a parameter in functions of the class Calculadora
+    double *nota = new double; //Pointer variable for dynamic memory allocation
     vector<double> notas(3, 0); //Declaration of array's variables utilizing vector library
 
-    Calculadora *o = new Calculadora;
+    Calculadora *o = new Calculadora; //Building the object o and utilizing the pointer for reserve of memory
 
     do{
         system("CLS");
@@ -87,37 +89,30 @@ int main()
                     system("CLS");
                     cout << "Programa tabuada: qual tabuada deseja saber?";
                     cin >> num; cout << endl;
+                    o->tabuada(num);
 
-                    for(int i=0; i <=10; i++){
-                        cout << num << " x " << i << " = " << num*i << endl;
-                    }
                     cout << "O que deseja fazer agora? 1 - Repetir Operacao / 2 - Fazer Outra Operacao\n";
                     cin >> teste;
                 }while(teste == 1);
                 break;
             case 6:
                 do{
-                    media = 0;
-                    for(int a=0; a <= 3; a++){
-                        notas[a] = 0;
-                    }
                     system("CLS");
                     cout << "Programa Media de um Aluno. Abaixo serao solicitadas as notas dos 4 bimentres para ser calculada a media final.\n";
+                    cout << "A media do aluno sera baseada em quantas notas? ";
+                    cin >> qtdNotas; cout << endl;
 
-                    //Adicionando notas ao array
-                    for(int i=0; i <= 3; i++){
-                        cout << i + 1 << " :";
-                        cin >> notas[i]; cout << endl;
+                    o->setQtdNotas(qtdNotas); //Insere quantidade de notas sobre qual o calculo será feito
+
+                    for(int i=0; i <= o->getQtdNotasArray(); i++){
+                        cout << i + 1 << " : ";
+                        cin >> *(nota + i); cout << endl; //Guarda na variável ponteiro, em seu devido espaço(array), os valores das medias inseridas pelo usuário
                     }
 
-                    //Calculo da media com vetores
-                    for(int x = 0; x <= 3; x++){
-                        media += notas[x];
-                    }
+                    o->setNota(nota); //pega referência do ponteiro onde foram alocadas as notas e passa pela função para ser atribuída a um atributo dentro da classe
+                    o->calculaMedia(); //com todos os dados já inseridos nos atributos do objeto, este método somente manda executar o calculo da média aritmética simples, e manda guardar o resultado em um atributo de nome resultado para somente ser recuperado posteriormente
 
-                    media /= 4;
-
-                    cout << "Notas recolhidas com sucesso! A media para este aluno e de: " << media;
+                    cout << "Notas recolhidas com sucesso! A media para este aluno e de: " << o->getResultado(); //Método que somente recupera o resultado dos calculos já realizados anteriormente
 
                     cout << endl;cout << endl;
                     cout << "O que deseja fazer agora? 1 - Repetir Operacao / 2 - Fazer Outra Operacao\n";
@@ -134,6 +129,7 @@ int main()
 
     //This section have a function of remove the objects allocated in the memory
     delete o;
+    delete nota;
 
     return 0;
 }
